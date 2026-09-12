@@ -4,12 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FIQZ GLOBAL - Ekosistem Digital Premium</title>
-  <meta name="description" content="FIQZ GLOBAL: Membawa Visi Digital ke Dunia Realiti melalui pembangunan web, automasi AI, dan e-dagang.">
   <style>
-    /* ================= GAYA ASAS ================= */
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body, html {
       margin: 0;
       padding: 0;
@@ -19,23 +15,21 @@
       overflow-x: hidden;
     }
 
-    /* ================= KANVAS ANIMASI (LATAR BELAKANG) ================= */
     #canvas-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: 1; /* DIBETULKAN: Angkat gambar supaya tak tertimbus di belakang */
+      z-index: 1;
     }
     canvas {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.5; /* Gelapkan sikit supaya teks timbul */
+      opacity: 0.5;
     }
 
-    /* ================= MENU NAVIGASI ================= */
     nav {
       position: fixed;
       top: 0;
@@ -71,14 +65,11 @@
       font-weight: 500;
       transition: color 0.3s;
     }
-    nav ul li a:hover {
-      color: #ee4d2d;
-    }
+    nav ul li a:hover { color: #ee4d2d; }
 
-    /* ================= SEKSYEN (HALAMAN) ================= */
     .section {
-      position: relative; /* DIBETULKAN: Pastikan kotak teks duduk ATAS gambar */
-      z-index: 10;        /* DIBETULKAN: Lapisan teks paling atas */
+      position: relative;
+      z-index: 10;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -109,21 +100,9 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #ee4d2d;
-    }
+    h2 { font-size: 2.5rem; margin-bottom: 20px; color: #ee4d2d; }
+    p { font-size: 1.2rem; line-height: 1.8; color: #ccc; margin-bottom: 20px; }
 
-    p {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      color: #ccc;
-      margin-bottom: 20px;
-    }
-
-    /* ================= SENARAI SERVIS ================= */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -139,7 +118,6 @@
     .service-card h3 { color: #fff; margin-top: 0; }
     .service-card p { font-size: 0.95rem; margin: 0; }
 
-    /* ================= BUTANG ================= */
     .button-group {
       margin-top: 30px;
       display: flex;
@@ -162,7 +140,6 @@
     .btn-tiktok { background-color: #000000; border: 1px solid #fff; }
     .btn-shopify { background-color: #95bf47; color: #000; }
     .btn-kofi { background-color: #FF5E5B; }
-    
     .btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
 
     @media (max-width: 768px) {
@@ -202,7 +179,6 @@
     <div class="glass-box">
       <h2>Siapa Kami?</h2>
       <p>Berpangkalan di Malaysia, FIQZ GLOBAL adalah sebuah entiti perniagaan digital yang memfokuskan kepada inovasi teknologi. Kami percaya setiap perniagaan layak memiliki infrastruktur web yang pantas dan sistem operasi yang efisien.</p>
-      <p>Dari pengurusan domain dan hosting berprestasi tinggi hingga ke penyepaduan AI, kami menyusun strategi digital yang relevan dengan pergerakan pasaran semasa.</p>
     </div>
   </section>
 
@@ -230,12 +206,12 @@
   <section id="hubungi" class="section">
     <div class="glass-box">
       <h2>Sertai Rangkaian Kami</h2>
-      <p>Terokai produk eksklusif kami atau mulakan projek digital anda hari ini. Kami beroperasi secara aktif di pelbagai platform e-dagang terkemuka.</p>
+      <p>Terokai produk eksklusif kami atau mulakan projek digital anda hari ini.</p>
       <div class="button-group">
-        <a href="#" target="_blank" class="btn btn-shopee">Shopee</a>
-        <a href="#" target="_blank" class="btn btn-tiktok">TikTok Shop</a>
-        <a href="#" target="_blank" class="btn btn-shopify">Shopify</a>
-        <a href="#" target="_blank" class="btn btn-kofi">Ko-fi</a>
+        <a href="https://shopee.com.my/" target="_blank" class="btn btn-shopee">Shopee</a>
+        <a href="https://tiktok.com/" target="_blank" class="btn btn-tiktok">TikTok Shop</a>
+        <a href="https://shopify.com/" target="_blank" class="btn btn-shopify">Shopify</a>
+        <a href="https://ko-fi.com/" target="_blank" class="btn btn-kofi">Ko-fi</a>
       </div>
     </div>
   </section>
@@ -245,8 +221,10 @@
     const context = canvas.getContext("2d");
 
     const frameCount = 100;
+    
+    // Fail gambar diletakkan terus di laluan utama tanpa nama folder
     const currentFrame = index => (
-      `SAMURAI GITHUB/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
+      `ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
     );
 
     const images = [];
