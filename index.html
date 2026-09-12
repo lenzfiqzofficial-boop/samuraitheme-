@@ -1,40 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FIQZ GLOBAL - Official Samurai Theme</title>
+  <title>FIQZ GLOBAL - Ekosistem Digital Premium</title>
+  <meta name="description" content="FIQZ GLOBAL: Membawa Visi Digital ke Dunia Realiti melalui pembangunan web, automasi AI, dan e-dagang.">
   <style>
+    /* ================= GAYA ASAS ================= */
+    html {
+      scroll-behavior: smooth; /* Skrol lembut bila tekan menu */
+    }
     body, html {
       margin: 0;
       padding: 0;
       background-color: #000;
       color: white;
       font-family: 'Helvetica Neue', Arial, sans-serif;
+      overflow-x: hidden;
     }
 
-    /* ================= MENU NAVIGASI (NAVBAR) ================= */
-    nav {
+    /* ================= KANVAS ANIMASI (LATAR BELAKANG) ================= */
+    #canvas-container {
       position: fixed;
       top: 0;
       left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1; /* Letak gambar di belakang sekali */
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.5; /* Gelapkan sikit supaya teks timbul */
+    }
+
+    /* ================= MENU NAVIGASI ================= */
+    nav {
+      position: fixed;
+      top: 0;
       width: 100%;
       padding: 20px 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
-      z-index: 100; /* Pastikan menu sentiasa di atas */
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px); /* Kesan kabur moden */
+      z-index: 100;
       box-sizing: border-box;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-
     nav .logo {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       font-weight: bold;
       letter-spacing: 2px;
       text-transform: uppercase;
+      color: #fff;
     }
-
     nav ul {
       list-style: none;
       display: flex;
@@ -42,92 +64,112 @@
       margin: 0;
       padding: 0;
     }
-
     nav ul li a {
-      color: white;
+      color: #ddd;
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 500;
       transition: color 0.3s;
     }
-
     nav ul li a:hover {
-      color: #ee4d2d; /* Bertukar oren bila mouse lalu */
+      color: #ee4d2d;
     }
 
-    /* ================= KANVAS ANIMASI ================= */
-    #scroll-container { height: 500vh; }
-    #canvas-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
-    }
-    canvas {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.4; /* Gelapkan sikit gambar supaya teks putih nampak jelas */
-    }
-
-    /* ================= RUANG TEKS (KANDUNGAN) ================= */
-    #content {
-      position: relative;
-      z-index: 10;
-      pointer-events: none;
-    }
-
+    /* ================= SEKSYEN (HALAMAN) ================= */
     .section {
-      height: 100vh;
+      min-height: 100vh; /* Setiap seksyen penuh 1 skrin */
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 20px;
-      pointer-events: auto;
+      padding: 80px 20px 20px 20px;
+      box-sizing: border-box;
+    }
+
+    /* KOTAK KANDUNGAN (GLASSMORPHISM) */
+    .glass-box {
+      background: rgba(15, 15, 15, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 50px;
+      max-width: 800px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
 
     h1 {
-      font-size: 4.5rem;
-      margin-bottom: 15px;
+      font-size: 3.5rem;
+      margin-top: 0;
+      margin-bottom: 20px;
       text-transform: uppercase;
       letter-spacing: 3px;
-      text-shadow: 3px 3px 15px rgba(0,0,0,0.9);
+      background: linear-gradient(90deg, #fff, #aaa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #ee4d2d;
     }
 
     p {
-      font-size: 1.5rem;
-      max-width: 700px;
-      line-height: 1.6;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #ccc;
+      margin-bottom: 20px;
     }
+
+    /* ================= SENARAI SERVIS ================= */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .service-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .service-card h3 { color: #fff; margin-top: 0; }
+    .service-card p { font-size: 0.95rem; margin: 0; }
 
     /* ================= BUTANG ================= */
     .button-group {
-      margin-top: 40px;
+      margin-top: 30px;
       display: flex;
-      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
     }
-
     .btn {
-      padding: 15px 40px;
-      font-size: 1.2rem;
+      padding: 12px 30px;
+      font-size: 1rem;
       font-weight: bold;
       color: white;
       text-decoration: none;
       border-radius: 5px;
       transition: all 0.3s ease;
       cursor: pointer;
+      border: none;
     }
+    .btn-shopee { background-color: #ee4d2d; }
+    .btn-tiktok { background-color: #000000; border: 1px solid #fff; }
+    .btn-shopify { background-color: #95bf47; color: #000; }
+    .btn-kofi { background-color: #FF5E5B; }
+    
+    .btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
 
-    .btn-primary { background-color: #ee4d2d; }
-    .btn-primary:hover { background-color: #d74325; transform: translateY(-3px); }
-
-    .btn-secondary { background-color: transparent; border: 2px solid white; }
-    .btn-secondary:hover { background-color: white; color: black; transform: translateY(-3px); }
+    /* Responsif untuk fon bimbit */
+    @media (max-width: 768px) {
+      nav { padding: 15px 20px; flex-direction: column; gap: 10px; }
+      h1 { font-size: 2.5rem; }
+      .glass-box { padding: 30px; }
+    }
   </style>
 </head>
 <body>
@@ -136,42 +178,78 @@
   <nav>
     <div class="logo">FIQZ GLOBAL</div>
     <ul>
-      <li><a href="#">Utama</a></li>
-      <li><a href="#">Produk</a></li>
-      <li><a href="#">Servis</a></li>
-      <li><a href="#">Hubungi Kami</a></li>
+      <li><a href="#utama">Utama</a></li>
+      <li><a href="#tentang">Tentang Kami</a></li>
+      <li><a href="#kepakaran">Kepakaran</a></li>
+      <li><a href="#hubungi">Hubungi</a></li>
     </ul>
   </nav>
 
   <!-- Latar Belakang Animasi -->
-  <div id="scroll-container">
-    <div id="canvas-container">
-      <canvas id="hero-lightpass"></canvas>
+  <div id="canvas-container">
+    <canvas id="hero-lightpass"></canvas>
+  </div>
+
+  <!-- ================= KANDUNGAN HALAMAN ================= -->
+  
+  <!-- Seksyen 1: Utama -->
+  <section id="utama" class="section">
+    <div class="glass-box">
+      <h1>Membina Empayar Digital</h1>
+      <p>Selamat datang ke FIQZ GLOBAL. Kami membawakan penyelesaian web premium, automasi perniagaan pintar, dan aset e-dagang yang direka khusus untuk melonjakkan jenama anda.</p>
+      <div class="button-group">
+        <a href="#kepakaran" class="btn btn-shopee">Teroka Perkhidmatan</a>
+      </div>
     </div>
+  </section>
 
-    <!-- Teks Utama yang akan muncul bila scroll -->
-    <div id="content">
-      <div class="section">
-        <h1>FIQZ GLOBAL</h1>
-        <p>Membawa Visi Digital ke Dunia Realiti.</p>
-      </div>
+  <!-- Seksyen 2: Tentang Kami -->
+  <section id="tentang" class="section">
+    <div class="glass-box">
+      <h2>Siapa Kami?</h2>
+      <p>Berpangkalan di Malaysia, FIQZ GLOBAL adalah sebuah entiti perniagaan digital yang memfokuskan kepada inovasi teknologi. Kami percaya setiap perniagaan layak memiliki infrastruktur web yang pantas dan sistem operasi yang efisien.</p>
+      <p>Dari pengurusan domain dan hosting berprestasi tinggi hingga ke penyepaduan AI, kami menyusun strategi digital yang relevan dengan pergerakan pasaran semasa.</p>
+    </div>
+  </section>
 
-      <div class="section">
-        <h1>Kualiti Premium</h1>
-        <p>Penyelesaian web dan e-dagang eksklusif untuk memacu perniagaan anda.</p>
-      </div>
-
-      <div class="section">
-        <h1>Terokai Koleksi Kami</h1>
-        <p>Dapatkan perkhidmatan dan produk kami melalui platform rasmi.</p>
-        <div class="button-group">
-          <a href="https://shopee.com.my/" target="_blank" class="btn btn-primary">Shopee Store</a>
-          <a href="https://tiktok.com/" target="_blank" class="btn btn-secondary">TikTok Shop</a>
+  <!-- Seksyen 3: Kepakaran -->
+  <section id="kepakaran" class="section">
+    <div class="glass-box" style="max-width: 900px;">
+      <h2>Kepakaran Kami</h2>
+      <p>Penyelesaian menyeluruh untuk skala perniagaan moden.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Infrastruktur Web</h3>
+          <p>Pembangunan laman web pantas dan pengurusan domain premium.</p>
+        </div>
+        <div class="service-card">
+          <h3>Automasi AI</h3>
+          <p>Integrasi sistem automasi pintar menggunakan n8n, Apollo, dan teknologi AI terkini.</p>
+        </div>
+        <div class="service-card">
+          <h3>Aset Digital</h3>
+          <p>Penyediaan template perakaunan, panduan bisnes, dan sumber kreatif digital.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
+  <!-- Seksyen 4: Hubungi & Rangkaian Kedai -->
+  <section id="hubungi" class="section">
+    <div class="glass-box">
+      <h2>Sertai Rangkaian Kami</h2>
+      <p>Terokai produk eksklusif kami atau mulakan projek digital anda hari ini. Kami beroperasi secara aktif di pelbagai platform e-dagang terkemuka.</p>
+      <div class="button-group">
+        <!-- Boleh tukar # dengan link kedai sebenar awak -->
+        <a href="#" target="_blank" class="btn btn-shopee">Shopee</a>
+        <a href="#" target="_blank" class="btn btn-tiktok">TikTok Shop</a>
+        <a href="#" target="_blank" class="btn btn-shopify">Shopify</a>
+        <a href="#" target="_blank" class="btn btn-kofi">Ko-fi</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= KOD JAVASCRIPT ANIMASI ================= -->
   <script>
     const canvas = document.getElementById("hero-lightpass");
     const context = canvas.getContext("2d");
@@ -220,6 +298,7 @@
     let targetScrollFraction = 0;
     let currentScrollFraction = 0;
 
+    // Animasi skrol kini dipautkan kepada panjang keseluruhan dokumen
     window.addEventListener('scroll', () => {
       const scrollTop = document.documentElement.scrollTop;
       const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
