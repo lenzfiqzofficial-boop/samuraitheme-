@@ -12,7 +12,7 @@
       background-color: #000;
     }
     #scroll-container {
-      height: 500vh; /* Mengawal kepanjangan scroll */
+      height: 500vh;
     }
     #canvas-container {
       position: fixed;
@@ -44,10 +44,9 @@
     const canvas = document.getElementById("hero-lightpass");
     const context = canvas.getContext("2d");
 
-    // Disesuaikan mengikut 100 fail gambar anda
     const frameCount = 100;
 
-    // Disesuaikan mengikut nama folder 'SAMURAI GITHUB' dan awalan nama fail 'ezgif-frame-'
+    // BETULKAN DI SINI: Tambah + 1 supaya bermula daripada 001, bukan 000
     const currentFrame = index => (
       `SAMURAI GITHUB/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
     );
@@ -55,15 +54,11 @@
     const images = [];
     const airpods = { frame: 0 };
 
-    // Preload gambar
     for (let i = 0; i < frameCount; i++) {
       const img = new Image();
       img.src = currentFrame(i);
       images.push(img);
     }
-
-    const img = new Image();
-    img.src = currentFrame(0);
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -72,9 +67,9 @@
     }
 
     function render() {
-      if (!images[airpods.frame] || !images[airpods.frame].complete) return;
-      
       const currentImg = images[airpods.frame];
+      if (!currentImg || !currentImg.complete || currentImg.naturalWidth === 0) return;
+
       const hRatio = canvas.width / currentImg.width;
       const vRatio = canvas.height / currentImg.height;
       const ratio = Math.max(hRatio, vRatio);
@@ -89,13 +84,13 @@
       );
     }
 
-    img.onload = () => {
+    // Lukis gambar pertama apabila selesai dimuat turun
+    images[0].onload = () => {
       resizeCanvas();
     };
 
     window.addEventListener('resize', resizeCanvas);
 
-    // Tetapan kawalan scroll
     let targetScrollFraction = 0;
     let currentScrollFraction = 0;
 
