@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Scroll Animation</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        #scroll-container {
+            height: 500vh; /* Determines the scroll length */
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Keeps it end-to-end without zooming */
+        }
+    </style>
+</head>
+<body>
+    <div id="scroll-container">
+        <div id="canvas-container">
+            <canvas id="hero-lightpass"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("hero-lightpass");
+        const context = canvas.getContext("2d");
+
+        const frameCount = 189;
+        const currentFrame = index => (
+            `ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
+        );
+
+        const preloadImages = () => {
+            for (let i = 1; i < frameCount; i++) {
+                const img = new Image();
+                img.src = currentFrame(i);
+            }
+        };
+
+        const img = new Image();
+        img.src = currentFrame(0);
+        
+        // Ensure canvas resolution matches its display size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            render();
+        }
+
+        img.onload = function() {
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+        };
+
+        const render = () => {
+            // Draw image covering the canvas (object-fit: cover logic)
+            const hRatio = canvas.width / img.width;
+            const vRatio = canvas.height / img.height;
+            const ratio = Math.max(hRatio, vRatio);
+            const centerShift_x = (canvas.width - img.width * ratio) / 2;
+            const centerShift_y = (canvas.height - img.height * ratio) / 2;  
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(img, 0, 0, img.width, img.height,
+                               centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
+        };
+
+        // Smooth scrolling variables
+        let scrollFraction = 0;
+        let targetScrollFraction = 0;
+
+        window.addEventListener('scroll', () => {  
+            const scrollTop = document.documentElement.scrollTop;
+            const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
+            targetScrollFraction = scrollTop / maxScrollTop;
+        });
+
+        // Animation loop for smooth transition
+        const loop = () => {
+            // Ease towards the target scroll fraction
+            scrollFraction += (targetScrollFraction - scrollFraction) * 0.1;
+            
+            const frameIndex = Math.min(
+                frameCount - 1,
+                Math.max(0, Math.floor(scrollFraction * frameCount))
+            );
+
+            // Avoid reloading the same frame unnecessarily
+            const expectedSrc = currentFrame(frameIndex);
+            if (!img.src.endsWith(expectedSrc)) {
+                img.src = expectedSrc;
+                img.onload = render;
+            } else {
+                render();
+            }
+
+            requestAnimationFrame(loop);
+        };
+
+        preloadImages();
+        loop();
+    </script>
+</body>
+</html>
