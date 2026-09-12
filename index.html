@@ -8,7 +8,7 @@
   <style>
     /* ================= GAYA ASAS ================= */
     html {
-      scroll-behavior: smooth; /* Skrol lembut bila tekan menu */
+      scroll-behavior: smooth;
     }
     body, html {
       margin: 0;
@@ -26,7 +26,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -1; /* Letak gambar di belakang sekali */
+      z-index: 1; /* DIBETULKAN: Angkat gambar supaya tak tertimbus di belakang */
     }
     canvas {
       width: 100%;
@@ -45,7 +45,7 @@
       justify-content: space-between;
       align-items: center;
       background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(10px); /* Kesan kabur moden */
+      backdrop-filter: blur(10px);
       z-index: 100;
       box-sizing: border-box;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -77,7 +77,9 @@
 
     /* ================= SEKSYEN (HALAMAN) ================= */
     .section {
-      min-height: 100vh; /* Setiap seksyen penuh 1 skrin */
+      position: relative; /* DIBETULKAN: Pastikan kotak teks duduk ATAS gambar */
+      z-index: 10;        /* DIBETULKAN: Lapisan teks paling atas */
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -87,7 +89,6 @@
       box-sizing: border-box;
     }
 
-    /* KOTAK KANDUNGAN (GLASSMORPHISM) */
     .glass-box {
       background: rgba(15, 15, 15, 0.6);
       backdrop-filter: blur(8px);
@@ -164,7 +165,6 @@
     
     .btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
 
-    /* Responsif untuk fon bimbit */
     @media (max-width: 768px) {
       nav { padding: 15px 20px; flex-direction: column; gap: 10px; }
       h1 { font-size: 2.5rem; }
@@ -174,7 +174,6 @@
 </head>
 <body>
 
-  <!-- Menu Navigasi Atas -->
   <nav>
     <div class="logo">FIQZ GLOBAL</div>
     <ul>
@@ -185,14 +184,10 @@
     </ul>
   </nav>
 
-  <!-- Latar Belakang Animasi -->
   <div id="canvas-container">
     <canvas id="hero-lightpass"></canvas>
   </div>
 
-  <!-- ================= KANDUNGAN HALAMAN ================= -->
-  
-  <!-- Seksyen 1: Utama -->
   <section id="utama" class="section">
     <div class="glass-box">
       <h1>Membina Empayar Digital</h1>
@@ -203,7 +198,6 @@
     </div>
   </section>
 
-  <!-- Seksyen 2: Tentang Kami -->
   <section id="tentang" class="section">
     <div class="glass-box">
       <h2>Siapa Kami?</h2>
@@ -212,7 +206,6 @@
     </div>
   </section>
 
-  <!-- Seksyen 3: Kepakaran -->
   <section id="kepakaran" class="section">
     <div class="glass-box" style="max-width: 900px;">
       <h2>Kepakaran Kami</h2>
@@ -234,13 +227,11 @@
     </div>
   </section>
 
-  <!-- Seksyen 4: Hubungi & Rangkaian Kedai -->
   <section id="hubungi" class="section">
     <div class="glass-box">
       <h2>Sertai Rangkaian Kami</h2>
       <p>Terokai produk eksklusif kami atau mulakan projek digital anda hari ini. Kami beroperasi secara aktif di pelbagai platform e-dagang terkemuka.</p>
       <div class="button-group">
-        <!-- Boleh tukar # dengan link kedai sebenar awak -->
         <a href="#" target="_blank" class="btn btn-shopee">Shopee</a>
         <a href="#" target="_blank" class="btn btn-tiktok">TikTok Shop</a>
         <a href="#" target="_blank" class="btn btn-shopify">Shopify</a>
@@ -249,7 +240,6 @@
     </div>
   </section>
 
-  <!-- ================= KOD JAVASCRIPT ANIMASI ================= -->
   <script>
     const canvas = document.getElementById("hero-lightpass");
     const context = canvas.getContext("2d");
@@ -298,7 +288,6 @@
     let targetScrollFraction = 0;
     let currentScrollFraction = 0;
 
-    // Animasi skrol kini dipautkan kepada panjang keseluruhan dokumen
     window.addEventListener('scroll', () => {
       const scrollTop = document.documentElement.scrollTop;
       const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
