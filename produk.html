@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produk & Servis - FIQZ GLOBAL</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: white;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('samurai.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.4);
+      z-index: 1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      box-sizing: border-box;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover, nav ul li a.active { color: #ee4d2d; }
+
+    .content-container {
+      position: relative;
+      z-index: 10;
+      padding: 140px 20px 60px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    .glass-box {
+      background: rgba(15, 15, 15, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-top: 0;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .product-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      border-color: #ee4d2d;
+    }
+
+    .product-card h3 {
+      color: #ee4d2d;
+      margin-top: 0;
+      font-size: 1.4rem;
+    }
+
+    .product-card p {
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      background-color: #ee4d2d;
+      transition: filter 0.3s;
+    }
+    .btn:hover { filter: brightness(1.2); }
+  </style>
+</head>
+<body>
+
+  <div class="bg-image"></div>
+
+  <nav>
+    <div class="logo">FIQZ GLOBAL</div>
+    <ul>
+      <li><a href="index.html">Utama</a></li>
+      <li><a href="produk.html" class="active">Produk</a></li>
+      <li><a href="https://shopee.com.my/lenzfiqzshop" target="_blank">Shopee</a></li>
+      <li><a href="https://www.tiktok.com/@lenzfiqz" target="_blank">TikTok</a></li>
+    </ul>
+  </nav>
+
+  <div class="content-container">
+    <div class="glass-box">
+      <h1>Produk & Servis Eksklusif</h1>
+      <div class="products-grid">
+        <div class="product-card">
+          <h3>Pembangunan Web</h3>
+          <p>Membina laman web perniagaan moden, pantas, dan direka khusus untuk meningkatkan kredibiliti jenama anda.</p>
+          <a href="https://shopee.com.my/lenzfiqzshop" target="_blank" class="btn">Dapatkan Sekarang</a>
+        </div>
+        <div class="product-card">
+          <h3>Automasi Perniagaan</h3>
+          <p>Integrasi sistem pintar menggunakan alat automasi terkini untuk melancarkan operasi harian perniagaan digital anda.</p>
+          <a href="https://shopee.com.my/lenzfiqzshop" target="_blank" class="btn">Ketahui Lanjut</a>
+        </div>
+        <div class="product-card">
+          <h3>Aset & Panduan Digital</h3>
+          <p>Koleksi template, modul rujukan perniagaan, dan panduan eksklusif untuk usahawan era digital.</p>
+          <a href="https://shopee.com.my/lenzfiqzshop" target="_blank" class="btn">Lihat Produk</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
