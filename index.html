@@ -46,7 +46,7 @@
 
     const frameCount = 100;
 
-    // BETULKAN DI SINI: Tambah + 1 supaya bermula daripada 001, bukan 000
+    // Menjana nama fail mengikut format sebenar: SAMURAI GITHUB/ezgif-frame-001.jpg
     const currentFrame = index => (
       `SAMURAI GITHUB/ezgif-frame-${(index + 1).toString().padStart(3, '0')}.jpg`
     );
@@ -54,6 +54,7 @@
     const images = [];
     const airpods = { frame: 0 };
 
+    // Preload semua 100 gambar
     for (let i = 0; i < frameCount; i++) {
       const img = new Image();
       img.src = currentFrame(i);
@@ -84,7 +85,6 @@
       );
     }
 
-    // Lukis gambar pertama apabila selesai dimuat turun
     images[0].onload = () => {
       resizeCanvas();
     };
